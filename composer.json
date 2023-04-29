@@ -7,14 +7,22 @@
         }
     ],
     "require": {
-        "nesbot/carbon": "^2.66"
+        "nesbot/carbon": "^2.66",
+        "fakerphp/faker": "^1.21"
     },
     
     "autoload": {
         "psr-4": {
         "App\\": "App/"
         }
+        },
+
+    "autoload": {
+        "psr-4": {
+            "Libs\\": "_classes/Libs",
+            "Helpers\\": "_classes/Helpers"
         }
+    }
        
 
 

@@ -13,15 +13,37 @@ $auth = Auth::check();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <style>
+          body{
+            background: url("img/spring2.jpg") -180px 250px, no-repeat;
+            background-size: cover;
+          
+        }
+    </style>
 </head>
 
 <body>
     <div class="container mt-5">
         <h1 class="mb-3">
             <?= $auth->name?>
-            <span class="fw-normal text-muted">
+
+            <?php if($auth->value === 1) : ?>
+                <span class="fw-normal text-muted">
+                    (<?= $auth->role ?>)
+                </span>
+
+            <?php elseif($auth->value === 2) : ?>
+                <span class="fw-normal text-primary">
+                (<?= $auth->role ?>)
+                </span> 
+
+            <?php else : ?>
+                <span class="fw-normal text-success">
                 (<?= $auth->role ?>)
             </span>
+
+            <?php endif ?>
         </h1>
 
         <?php if (isset($_GET['error'])) : ?>
@@ -34,10 +56,10 @@ $auth = Auth::check();
             <img class="img-thumbnail mb-3" src="_actions/photos/<?= $auth->photo ?>" alt="Profile Photo" width="200">
         <?php endif ?>
 
-        <form action="_actions/upload.php" method="post" enctype="multipart/form-data">
-           <div class="input-group">
+        <form action="_actions/upload.php" method="post" enctype="multipart/form-data" >
+           <div class="input-group mb-2">
            <input type="file" name="photo" class="form-control">
-           <button class="btn btn-info">Upload</button>
+           <button class="btn btn-secondary">Upload</button>
            </div>
         </form>
         <ul class="list-group">

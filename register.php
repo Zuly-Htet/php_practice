@@ -7,6 +7,12 @@
     <title>Register</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
+
+body{
+            background: url("img/spring1.jpg") -180px 250px, no-repeat;
+            background-size: cover;
+          
+        }
         .wrap{
             width:100%;
             max-width:400px;
@@ -25,7 +31,7 @@
             </div>
         <?php endif ?>
 
-        <form action = "_actions/create.php" method="post">
+        <form action = "_actions/create.php" method="post" class="shadow-lg">
             <input type="text" name="name" placeholder="Name" class= "form-control mb-2 "required>
             <input type="email" name="email" placeholder="Email" class= "form-control mb-2 "required>
             <input type="text" name="phone" placeholder="Phone" class= "form-control mb-2 "required>

@@ -22,6 +22,12 @@ $auth = Auth::check();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body{
+            background-color: lightblue;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -36,35 +42,55 @@ $auth = Auth::check();
                 <?= count($all) ?>
             </span>
         </h1>
-        <table class="table table-striped table-bordered">
+        <table class="table table-dark table-striped table-bordered">
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Role</th>
-                <th>Actions</th>
+                <th style="color:lightblue">ID</th>
+                <th style="color:lightblue">Name</th>
+                <th style="color:lightblue">Email</th>
+                <th style="color:lightblue">Phone</th>
+                <th style="color:lightblue">Role</th>
+                <th style="color:lightblue">Actions</th>
             </tr>
             <?php foreach ($all as $user) : ?>
                 <tr>
                     <td><?= $user->id ?></td>
-                    <td><?= $user->name ?></td>
+                    <td>
+                        <?php if($user->value === 2 ):?>
+                            <span class="text-primary">  <?= $user->name ?> </span>
+                        <?php elseif($user->value === 3 ):?>
+                            <span class="text-success">  <?= $user->name ?> </span>
+                        <?php elseif($user->suspended):?>
+                            <span class="text-danger">  <?= $user->name ?> </span>
+                        <?php else : ?>
+                            <span class="text-white"> <?= $user->name ?> </span> 
+                        <?php endif ?>  
+                    </td>
                     <td><?= $user->email ?></td>
                     <td><?= $user->phone ?></td>
                     <td>
-                        <?php if ($user->value === 1) : ?>
+                        <?php if($user->suspended) : ?>
+                            <span class="badge bg-danger">
+                                <?= $user->role ?>
+                            </span>
+                        
+                       
+                        <?php elseif($user->value === 1 ) : ?>
                             <span class="badge bg-secondary">
                                 <?= $user->role ?>
                             </span>
-                        <?php elseif ($user->value === 2) : ?>
+
+                        <?php elseif($user->value === 2) : ?>
                             <span class="badge bg-primary">
                                 <?= $user->role ?>
                             </span>
+
                         <?php else : ?>
                             <span class="badge bg-success">
                                 <?= $user->role ?>
                             </span>
                         <?php endif ?>
+
+                        
                     </td>
                     <td>
                        
@@ -84,7 +110,7 @@ $auth = Auth::check();
                             <?php endif ?>    
                           
 
-                            <?php if ($auth->value > 2) : ?>
+                            <?php if ($auth->value >= 2) : ?>
                                 <?php if ($user->suspended) : ?>
                                     <a href="_actions/unsuspend.php?id=<?= $user->id ?>" class="btn btn-warning btn-sm">Unban</a>
                                 <?php else : ?>

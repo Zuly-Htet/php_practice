@@ -18,10 +18,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
+
+        body{
+            background: url("img/spring2.jpg") -180px 250px, no-repeat;
+            background-size: cover;
+          
+        }
         .wrap {
             width: 100%;
             max-width: 400px;
             margin: 40px auto;
+           
         }
     </style>
 </head>
@@ -46,7 +53,7 @@
                 Your account is suspended...
             </div>
         <?php endif ?>
-        <form action="_actions/login.php" method="post">
+        <form action="_actions/login.php" method="post" class="shadow-lg">
             <input type="email" name="email" class="form-control mb-2" placeholder="Email" required>
             <input type="password" name="password" class="form-control mb-2" placeholder="Password" required>
             <button type="submit" class="w-100 btn btn-lg btn-primary">
